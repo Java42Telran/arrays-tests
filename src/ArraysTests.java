@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 class ArraysTests {
@@ -78,18 +80,30 @@ class ArraysTests {
 	}
 	@Test
 	void arraysCopyOf() {
-		//TODO write tests for Arrays.copyOf functionality according to the doc
+		int ar[] = {1, 2, 3, 4, 5};
+		int expectedFull[] =  {1, 2, 3, 4, 5};
+		int expectedLess[] = {1, 2, 3};
+		int expectedGreater[] =  {1, 2, 3, 4, 5, 0, 0};
+		assertArrayEquals(expectedFull, Arrays.copyOf(ar, ar.length));
+		assertArrayEquals(expectedLess, Arrays.copyOf(ar, ar.length - 2));
+		assertArrayEquals(expectedGreater, Arrays.copyOf(ar, ar.length + 2));
 	
 	}
 	@Test
 	void arraysCopyOfRange() {
-		//TODO write tests for Arrays.copyOfRange functionality according to the doc
+		int ar[] = {1, 2, 3, 4, 5};
+		int expected[] = {2, 3, 4};
+		assertArrayEquals(expected, Arrays.copyOfRange(ar, 1, 4));
 	}
 	
 
 	@Test
 	void arraysBinarySearch() {
-		//TODO write tests for Arrays.binarySearch functionality according to the doc
+		int ar[] = {10, 20, 30, 40, 50};
+		assertEquals(1, Arrays.binarySearch(ar, 20));
+		assertEquals(-1, Arrays.binarySearch(ar, 5));
+		assertEquals(-6, Arrays.binarySearch(ar, 60));
+		assertEquals(-3, Arrays.binarySearch(ar,25));
 	}
 
 }
