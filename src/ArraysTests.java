@@ -67,8 +67,9 @@ class ArraysTests {
 		int ar[]= {1, 2, 3, 4, 5};
 		int actual[] = new int[4];
 		int expected[] = {1, 2, 4, 5};
-		System.arraycopy(ar, 0, actual, 0, 2);
-		System.arraycopy(ar, 3, actual, 2, 2);
+		int indDelete = 2;
+		System.arraycopy(ar, 0, actual, 0, indDelete);
+		System.arraycopy(ar, 3, actual, indDelete, actual.length - indDelete);
 		assertArrayEquals(expected, actual);
 	}
 	@Test
@@ -76,8 +77,9 @@ class ArraysTests {
 		int ar[]= {1, 2, 3, 4, 5};
 		int actual[] = new int[6];
 		int expected[] = {1, 2, 3,-10, 4, 5};
-		System.arraycopy(ar, 0, actual, 0, 3);
-		System.arraycopy(ar, 3, actual, 4, 2);
+		int indInsert = 3;
+		System.arraycopy(ar, 0, actual, 0, indInsert);
+		System.arraycopy(ar, indInsert, actual, indInsert + 1, ar.length - indInsert);
 		actual[3] = -10;
 		assertArrayEquals(expected, actual);
 	}
