@@ -68,8 +68,8 @@ class ArraysTests {
 		int actual[] = new int[4];
 		int expected[] = {1, 2, 4, 5};
 		int indDelete = 2;
-		System.arraycopy(ar, 0, actual, 0, indDelete);
-		System.arraycopy(ar, 3, actual, indDelete, actual.length - indDelete);
+		System.arraycopy(ar, 0, actual, 0, indDelete);//copy all elements before the one at indDelete
+		System.arraycopy(ar, 3, actual, indDelete, actual.length - indDelete);//copy all elements after the one at indDelete
 		assertArrayEquals(expected, actual);
 	}
 	@Test
@@ -80,7 +80,7 @@ class ArraysTests {
 		int indInsert = 3;
 		System.arraycopy(ar, 0, actual, 0, indInsert);
 		System.arraycopy(ar, indInsert, actual, indInsert + 1, ar.length - indInsert);
-		actual[3] = -10;
+		actual[indInsert] = -10;
 		assertArrayEquals(expected, actual);
 	}
 	@Test
@@ -105,7 +105,9 @@ class ArraysTests {
 	@Test
 	void arraysBinarySearch() {
 		int ar[] = {10, 20, 30, 40, 50};
+		//Test for existing element
 		assertEquals(1, Arrays.binarySearch(ar, 20));
+		//Three tests for non-existing elements
 		assertEquals(-1, Arrays.binarySearch(ar, 5));
 		assertEquals(-6, Arrays.binarySearch(ar, 60));
 		assertEquals(-3, Arrays.binarySearch(ar,25));
